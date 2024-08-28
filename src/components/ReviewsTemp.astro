@@ -1,0 +1,57 @@
+---
+import {collections} from "../content/config";
+
+// Fetch reviews using the loader function from the reviews collection
+const reviews = await collections.reviews.loader();
+
+// Define some fallback reviews
+const fallbackReviews = [
+    {
+        id: "fallback-1",
+        author_name: "John Doe",
+        rating: 5,
+        text: "This is a great place! Highly recommend.",
+        time: Date.now() / 1000,
+    },
+    {
+        id: "fallback-2",
+        author_name: "Jane Smith",
+        rating: 4,
+        text: "Good experience overall, will visit again.",
+        time: Date.now() / 1000,
+    },
+];
+---
+
+<section class="p-8">
+    <h2 class="text-2xl font-bold mb-4">Google Reviews</h2>
+    <ul class="list-disc pl-5">
+        {reviews.length > 0 ? (
+            reviews.map((review) => (
+                    <li key={review.id} class="mb-4">
+                        <div class="border p-4 rounded-lg">
+                            <h3 class="font-semibold">{review.author_name}</h3>
+                            <p class="text-sm text-gray-600">Rating: {review.rating} / 5</p>
+                            <p class="text-gray-800 mt-2">{review.text}</p>
+                            <p class="text-sm text-gray-500 mt-2">
+                                Date: {new Date(review.time * 1000).toLocaleDateString()}
+                            </p>
+                        </div>
+                    </li>
+            ))
+        ) : (
+            fallbackReviews.map((review) => (
+                    <li key={review.id} class="mb-4">
+                        <div class="border p-4 rounded-lg">
+                            <h3 class="font-semibold">{review.author_name}</h3>
+                            <p class="text-sm text-gray-600">Rating: {review.rating} / 5</p>
+                            <p class="text-gray-800 mt-2">{review.text}</p>
+                            <p class="text-sm text-gray-500 mt-2">
+                                Date: {new Date(review.time * 1000).toLocaleDateString()}
+                            </p>
+                        </div>
+                    </li>
+            ))
+        )}
+    </ul>
+</section>

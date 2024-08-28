@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
+    "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.14.6",
-    "fulldev-ui": "^0.3.35",
     "fulldev-blocks": "^0.1.0-experimental.12",
+    "fulldev-ui": "^0.3.35",
+    "tailwindcss": "^3.4.10",
     "typescript": "^5.5.4"
   }
 }
