@@ -1,0 +1,49 @@
+---
+import {Reviews} from "fulldev-blocks";
+import {collections} from "../content/config";
+import HeaderAstro from "./HeaderAstro.astro";
+
+const reviewsData = await collections.reviews.loader();
+
+const {
+    structure = "masonry",
+    variant = "default",
+    frame = "standard",
+    heading = "Customer Reviews",
+    text = "Here are some reviews from our customers.",
+    cards,
+    card,
+    label = "Reviews",
+    ...rest
+} = Astro.props;
+
+const reviewsProps = {
+    structure,
+    variant,
+    frame,
+    heading,
+    text,
+    label,
+    cards: reviewsData.map((review: any) => ({
+        compact: true,
+        variant: "base",
+        radius: "medium", // Example value
+        value: review.author_name,
+        heading: review.author_name,
+        title: review.author_name,
+        text: review.text,
+        description: review.content,
+        rating: review.rating,
+        avatars: ["avatar1.svg"], // Placeholder avatar
+        avatar: "avatar1.svg", // Placeholder avatar
+        label: review.author_name,
+        ...card
+    })),
+    ...rest
+};
+---
+
+<div>
+    <HeaderAstro></HeaderAstro>
+    <Reviews {...reviewsProps}/>
+</div>
