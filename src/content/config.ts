@@ -2,7 +2,7 @@ import {defineCollection} from "astro:content";
 
 const reviews = defineCollection({
     loader: async () => {
-        const API_KEY = "AIzaSyDG_GZtjlTO0UaP9OePaftLjaEDT34lsbg";
+        const API_KEY = "YourApiKey"; // Specify your Google Places API key here
         const PLACE_ID = "ChIJIzaTdkckh0cR-v18lq42DE4";
         const LANGUAGE = "en"; // Specify the language code here
 
